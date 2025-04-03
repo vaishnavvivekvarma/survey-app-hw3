@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Submitted Surveys</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding: 30px;
+    }
+    table {
+      background-color: white;
+    }
+    th, td {
+      vertical-align: middle !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center mb-4">Submitted Surveys</h2>
+
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+      <th>Date of Survey</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="survey, iterStat : ${surveys}">
+      <td th:text="${iterStat.index + 1}">1</td>
+      <td th:text="${survey.firstName + ' ' + survey.lastName}">John Doe</td>
+      <td th:text="${survey.email}">john@example.com</td>
+      <td th:text="${survey.city}">Fairfax</td>
+      <td th:text="${survey.dateOfSurvey}">2025-03-25</td>
+      <td>
+        <a th:href="@{'/edit/' + ${survey.id}}" class="btn btn-warning btn-sm">Edit</a>
+        <a th:href="@{'/delete/' + ${survey.id}}" class="btn btn-danger btn-sm"
+           onclick="return confirm('Are you sure you want to delete this survey?');">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a th:href="@{/}" class="btn btn-secondary">Back to Survey</a>
+</div>
+
+</body>
+</html>
