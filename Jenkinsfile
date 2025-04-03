@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/vaishnavvivekvarma/survey-app-hw3.git'
+                git branch: 'main', url: 'https://github.com/vaishnavvivekvarma/survey-app-hw3.git'
             }
         }
 
